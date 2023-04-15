@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LiveChat</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+
+  </head>
+  <body>
+
+    <div class="usersBox">
+      <ul id="userList"></ul>
+    </div>
+
+    <div class="livechatBox">
+
+      <div class="chatMessages"></div>
+
+      <form class="chatForm" action="chat.html">
+        <input type="text" id="messageInput" value="" required>
+        <input type="submit" value="Wyślij" id="messageSubmit">
+      </form>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

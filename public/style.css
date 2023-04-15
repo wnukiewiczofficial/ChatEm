@@ -1,0 +1,114 @@
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  background: #48483A;
+}
+
+.loginForm{
+  background: #74776B;
+  width: 20%;
+  height: 50vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.2vw solid white;
+  border-radius: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#username{
+  border: 0.1vw solid black;
+  border-radius: 0.1vw;
+  width: 80%;
+  font-size: 1.5vw;
+}
+
+#loginButton{
+  width: 90%;
+  height: 5vh;
+}
+
+.usersBox{
+  width: 25%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: 0.4vw solid #DFF8EB;
+  border-top-right-radius: 2vw;
+  border-bottom-right-radius: 2vw;
+  background: #5C574F;
+}
+
+.livechatBox{
+  width: 60%;
+  height: 60vh;
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  transform: translate(0, -50%);
+  border: 0.3vw solid #DFF8EB;
+  border-radius: 1vw;
+  background: #74776B;
+}
+
+.livechatBox::after{
+  content: 'LiveChat';
+  color: white;
+  font-size: 8vw;
+  position: absolute;
+  transform: translate(-50%, -100%);
+  left: 50%;
+}
+
+.chatMessages{
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 75%;
+  background: white;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.chatForm{
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#messageInput{
+  width: 60%;
+  height: 6vh;
+  margin-left: 5%;
+}
+
+#messageSubmit{
+  width: 8vh;
+  height: 8vh;
+  margin: auto;
+  border-radius: 100%;
+}
+
+.message{
+  position: relative;
+  left: 5%;
+  top: 2%;
+  padding-left: 3%;
+  border-left: 0.2vw solid salmon;
+}
+
+.messageAuthor{
+  font-size: 2vw;
+}
