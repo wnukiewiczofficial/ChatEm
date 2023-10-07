@@ -1,5 +1,5 @@
 {
-  "name": "livechat",
+  "name": "chatem",
   "version": "1.0.0",
   "description": "It's a live chat",
   "main": "server.js",
@@ -7,7 +7,7 @@
     "start": "node server",
     "dev": "nodemon server"
   },
-  "author": "David Wnukiewicz",
+  "author": "Dawid Wnukiewicz",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",

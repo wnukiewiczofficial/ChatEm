@@ -1,30 +1,37 @@
 const socket = io();
-
-const {username} = Qs.parse(location.search, {
-  ignoreQueryPrefix: true
+io.connect();
+const { user } = Qs.parse(location.search, {
+  ignoreQueryPrefix: true,
 });
 
-socket.emit('joinRoom', username);
+socket.on("connect", () => {
+  const username = user || `Anonim#${socket.id}`;
+  socket.emit("joinRoom", username);
 
-socket.on('message', ({username, message}) => {
-  addMessageToDOM(username, message);
+  socket.on("messageHistory", (messages) => {
+    synchronizeMessagesWithServer(messages);
+  });
+
+  socket.on("message", ({ username, message }) => {
+    addMessageToDOM(username, message);
+  });
+
+  socket.on("updateUsers", (users) => {
+    // updateUsersToDOM(users);
+  });
+
+  document.querySelector(".chatForm ").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let messageInput = document.querySelector("#messageInput");
+    let message = messageInput.value;
+
+    socket.emit("message", { username, message });
+    messageInput.value = "";
+  });
 });
-
-socket.on('updateUsers', users => {
-  updateUsersToDOM(users);
-});
-
-document.querySelector('.chatForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  let messageInput = document.querySelector('#messageInput');
-  let message = messageInput.value;
-
-  socket.emit('message', {username, message});
-  messageInput.value = '';
-});
-
-function addMessageToDOM(author, message){
-  let chatBox = document.querySelector('.chatMessages');
+// Client JS
+function addMessageToDOM(author, message) {
+  const chatBox = document.querySelector(".chatMessages");
 
   chatBox.innerHTML += `
   <div class="message">
@@ -33,9 +40,22 @@ function addMessageToDOM(author, message){
   </div>`;
 }
 
-function updateUsersToDOM(users){
-  let userList = document.querySelector('#userList');
+function updateUsersToDOM(users) {
+  const userList = document.querySelector("#userList");
 
-  let html = users.map(user => `<li>${user.username}</li>`).join('');
+  const html = users.map((user) => `<li>${user.username}</li>`).join("");
   userList.innerHTML = html;
+}
+
+function synchronizeMessagesWithServer(messages) {
+  const chatBox = document.querySelector(".chatMessages");
+  chatBox.innerHTML = "";
+
+  messages.forEach((message) => {
+    chatBox.innerHTML += `
+      <div class="message">
+        <h1 class="messageAuthor">${message.author}</h1>
+        <p class="messageContent">${message.message}</p>
+      </div>`;
+  });
 }

@@ -1,114 +1,180 @@
-body{
-  width: 100%;
-  height: 100%;
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
+
+body {
+  width: 100dvw;
+  height: 100dvh;
   margin: 0;
   box-sizing: border-box;
-  background: #48483A;
-}
-
-.loginForm{
-  background: #74776B;
-  width: 20%;
-  height: 50vh;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 0.2vw solid white;
-  border-radius: 20%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  font-family: "Mulish", sans-serif;
 }
 
-#username{
-  border: 0.1vw solid black;
-  border-radius: 0.1vw;
-  width: 80%;
-  font-size: 1.5vw;
+.loginForm {
+  width: 100%;
+  height: 100%;
+  background: dodgerblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
 }
 
-#loginButton{
-  width: 90%;
-  height: 5vh;
+#usernameInput {
+  width: 50%;
+  height: 5%;
+  padding-left: 5%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  padding-left: 2%;
 }
 
-.usersBox{
-  width: 25%;
-  height: 100vh;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-right: 0.4vw solid #DFF8EB;
-  border-top-right-radius: 2vw;
-  border-bottom-right-radius: 2vw;
-  background: #5C574F;
-}
-
-.livechatBox{
-  width: 60%;
-  height: 60vh;
-  position: absolute;
-  left: 30%;
-  top: 50%;
-  transform: translate(0, -50%);
-  border: 0.3vw solid #DFF8EB;
-  border-radius: 1vw;
-  background: #74776B;
-}
-
-.livechatBox::after{
-  content: 'LiveChat';
+#loginButton {
+  width: 50%;
+  height: 5%;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  font-family: "Mulish", sans-serif;
   color: white;
-  font-size: 8vw;
-  position: absolute;
-  transform: translate(-50%, -100%);
-  left: 50%;
+  font-weight: bold;
+
+  --c: white; /* the color*/
+
+  box-shadow: 0 0 0 0.2em inset var(--c);
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  transition: background-size 0.4s, background-position 0s 0.4s;
+}
+#loginButton:hover {
+  cursor: pointer;
+  --_p: 100%;
+  color: dodgerblue;
+  transition: background-position 0.2s, background-size 0s, color 0.4s;
+}
+#loginButton:active {
+  background-color: var(--c);
+  opacity: 0.8;
 }
 
-.chatMessages{
-  position: absolute;
-  top: 5%;
-  left: 5%;
+.logo-title {
+  width: 100%;
+  height: 10%;
+  font-size: 5em;
+  background: dodgerblue;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.livechatBox {
+  width: 100%;
+  height: 90%;
+  border: 1vw solid dodgerblue;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+.chatMessages {
   width: 90%;
-  height: 75%;
-  background: white;
+  height: 85%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  gap: 2%;
   overflow: scroll;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.chatForm{
-  position: absolute;
-  bottom: 2%;
+.chatForm {
   width: 100%;
+  height: 15%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  background: dodgerblue;
+  color: white;
 }
 
-#messageInput{
+#messageInput {
   width: 60%;
-  height: 6vh;
-  margin-left: 5%;
+  height: 60%;
+  padding-left: 5%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  padding-left: 2%;
 }
 
-#messageSubmit{
-  width: 8vh;
-  height: 8vh;
-  margin: auto;
-  border-radius: 100%;
+#messageSubmit {
+  width: 20%;
+  height: 60%;
+  border: none;
+  border-radius: 5px;
+  font-family: "Mulish", sans-serif;
+  color: white;
+  font-weight: bold;
+
+  --c: white; /* the color*/
+
+  box-shadow: 0 0 0 0.2em inset var(--c);
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  transition: background-size 0.4s, background-position 0s 0.4s;
+}
+#messageSubmit:hover {
+  cursor: pointer;
+  --_p: 100%;
+  color: dodgerblue;
+  transition: background-position 0.2s, background-size 0s, color 0.4s;
+}
+#messageSubmit:active {
+  background-color: var(--c);
+  opacity: 0.8;
 }
 
-.message{
+.message {
   position: relative;
-  left: 5%;
-  top: 2%;
+  display: flex;
+  height: auto;
+  flex-direction: column;
   padding-left: 3%;
   border-left: 0.2vw solid salmon;
 }
 
-.messageAuthor{
-  font-size: 2vw;
+.messageAuthor {
+  font-size: 0.8em;
+  margin: 0;
+  color: lightgrey;
+}
+
+.messageContent {
+  margin: 0;
 }

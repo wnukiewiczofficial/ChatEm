@@ -1,46 +1,54 @@
-const path = require('path');
-const http = require('http');
-const express = require('express');
-const socketio = require('socket.io');
+const path = require("path");
+const http = require("http");
+const express = require("express");
+const socketio = require("socket.io");
 
-const {userJoin, userDisconnect, getUser, getUserList} = require('./utils/users');
-
+const messageHistory = require("./utils/messagehistory");
+const {
+  userJoin,
+  userDisconnect,
+  getUser,
+  getUserList,
+} = require("./utils/users");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-io.on('connection', socket => {
+// Interval every 6 hours
+const clearMessageHistoryInterval = setInterval(messageHistory.clear, 21600);
 
-  socket.on('joinRoom', username => {
+io.on("connection", (socket) => {
+  socket.on("joinRoom", (username) => {
     const user = userJoin(socket.id, username);
     let message = "has joined the chat!";
-    socket.broadcast.emit('message', { username, message});
+    messageHistory.addMessage(username, message);
+    io.emit("message", { username, message });
+    socket.emit("messageHistory", messageHistory.getMessages());
 
     const users = getUserList();
-    io.emit('updateUsers', users);
+    io.emit("updateUsers", users);
   });
 
-
-  socket.on('message', ({username, message}) => {
-    io.emit('message', {username, message});
+  socket.on("message", ({ username, message }) => {
+    messageHistory.addMessage(username, message);
+    io.emit("message", { username, message });
   });
 
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     const user = userDisconnect(socket.id);
-    if(user){
+    if (user) {
       const username = user.username;
       let message = "has disconnected the chat!";
-      io.emit('message', {username, message});
-      
+      io.emit("message", { username, message });
+
       const users = getUserList();
-      io.emit('updateUsers', users);
+      io.emit("updateUsers", users);
     }
   });
 });
-
 
 const PORT = process.env.PORT || 3000;
 

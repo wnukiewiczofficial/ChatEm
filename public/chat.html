@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>LiveChat</title>
-    <link rel="stylesheet" href="/style.css">
+    <meta charset="utf-8" />
+    <meta
+      meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>ChatEm</title>
+    <meta
+      meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="/style.css" />
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"
     ></script>
-
   </head>
   <body>
-
-    <div class="usersBox">
-      <ul id="userList"></ul>
-    </div>
-
+    <a href="index.html" class="logo-title">ChatEm</a>
     <div class="livechatBox">
-
       <div class="chatMessages"></div>
 
-      <form class="chatForm" action="chat.html">
-        <input type="text" id="messageInput" value="" required>
-        <input type="submit" value="Wyślij" id="messageSubmit">
+      <form class="chatForm" action="chat.html" autocomplete="off">
+        <input
+          type="text"
+          id="messageInput"
+          value=""
+          placeholder="Napisz wiadomość..."
+          required
+        />
+        <input type="submit" value="Wyślij" id="messageSubmit" />
       </form>
-
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
