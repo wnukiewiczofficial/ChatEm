@@ -1,12 +1,13 @@
 const users = [];
 
-function userJoin(id, username) {
+function addUser(id, username) {
   const user = { id, username };
   users.push(user);
+  console.log(`User joined:: ${username}`);
   return user;
 }
 
-function userDisconnect(id) {
+function deleteUser(id) {
   let index = users.findIndex((user) => user.id == id);
   if (index != -1) return users.splice(index, 1)[0];
 }
@@ -20,8 +21,8 @@ function getUserList() {
 }
 
 module.exports = {
-  userJoin,
-  userDisconnect,
+  addUser,
+  deleteUser,
   getUser,
   getUserList,
 };

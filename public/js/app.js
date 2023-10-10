@@ -17,7 +17,7 @@ socket.on("connect", () => {
   });
 
   socket.on("updateUsers", (users) => {
-    // updateUsersToDOM(users);
+    updateUsersToDOM(users);
   });
 
   document.querySelector(".chatForm ").addEventListener("submit", (e) => {
@@ -38,13 +38,12 @@ function addMessageToDOM(author, message) {
     <h1 class="messageAuthor">${author}</h1>
     <p class="messageContent">${message}</p>
   </div>`;
+  chatBox.scrollTo(0, chatBox.scrollHeight);
 }
 
 function updateUsersToDOM(users) {
-  const userList = document.querySelector("#userList");
-
-  const html = users.map((user) => `<li>${user.username}</li>`).join("");
-  userList.innerHTML = html;
+  const userCount = document.querySelector("#userCount");
+  userCount.innerHTML = users.length;
 }
 
 function synchronizeMessagesWithServer(messages) {
@@ -57,5 +56,6 @@ function synchronizeMessagesWithServer(messages) {
         <h1 class="messageAuthor">${message.author}</h1>
         <p class="messageContent">${message.message}</p>
       </div>`;
+    chatBox.scrollTo(0, chatBox.scrollHeight);
   });
 }
