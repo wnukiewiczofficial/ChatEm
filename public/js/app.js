@@ -4,8 +4,9 @@ const { user } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
+const username = user || `Anonim#${socket.id}`;
+
 socket.on("connect", () => {
-  const username = user || `Anonim#${socket.id}`;
   socket.emit("joinRoom", username);
 });
 socket.on("messageHistory", (messages) => {
