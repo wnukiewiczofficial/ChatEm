@@ -14,7 +14,7 @@ function deleteFirstMessage() {
   return messageHistory.shift();
 }
 
-function clear() {
+function clearChat() {
   messageHistory.length = 0;
   return messageHistory;
 }
@@ -23,5 +23,5 @@ module.exports = {
   getMessages,
   addMessage,
   deleteFirstMessage,
-  clear,
+  clearChat,
 };

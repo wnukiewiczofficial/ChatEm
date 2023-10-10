@@ -7,7 +7,7 @@ const {
   getMessages,
   addMessage,
   deleteFirstMessage,
-  clear,
+  clearChat,
 } = require("./utils/messagehistory");
 const { addUser, deleteUser, getUser, getUserList } = require("./utils/users");
 
@@ -36,6 +36,7 @@ io.on("connection", (socket) => {
     const user = deleteUser(socket.id);
     if (user) {
       const users = getUserList();
+      if (users.length === 0) clear();
       io.emit("updateUsers", users);
     }
   });
