@@ -7,27 +7,26 @@ const { user } = Qs.parse(location.search, {
 socket.on("connect", () => {
   const username = user || `Anonim#${socket.id}`;
   socket.emit("joinRoom", username);
+});
+socket.on("messageHistory", (messages) => {
+  synchronizeMessagesWithServer(messages);
+});
 
-  socket.on("messageHistory", (messages) => {
-    synchronizeMessagesWithServer(messages);
-  });
+socket.on("message", ({ username, message }) => {
+  addMessageToDOM(username, message);
+});
 
-  socket.on("message", ({ username, message }) => {
-    addMessageToDOM(username, message);
-  });
+socket.on("updateUsers", (users) => {
+  updateUsersToDOM(users);
+});
 
-  socket.on("updateUsers", (users) => {
-    updateUsersToDOM(users);
-  });
+document.querySelector(".chatForm ").addEventListener("submit", (e) => {
+  e.preventDefault();
+  let messageInput = document.querySelector("#messageInput");
+  let message = messageInput.value;
 
-  document.querySelector(".chatForm ").addEventListener("submit", (e) => {
-    e.preventDefault();
-    let messageInput = document.querySelector("#messageInput");
-    let message = messageInput.value;
-
-    socket.emit("message", { username, message });
-    messageInput.value = "";
-  });
+  socket.emit("message", { username, message });
+  messageInput.value = "";
 });
 // Client JS
 function addMessageToDOM(author, message) {
